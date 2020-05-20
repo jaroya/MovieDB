@@ -1,29 +1,43 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default" id="main_nav">
   <div class="container-fluid">
+
     <div class="navbar-header">
-      <a class="navbar-brand" href="/">The New IMDB</a>
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand text-light" href="/" style="color: white "><i class="fas fa-home"></i> &nbsp;The New IMDB</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/login">Login</a></li>
-      <li><a href="/favorites">Favorites</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li>
-          <form action="/search?source=hp" method="post" id="search-form" class="form-inline">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      <ul class="nav navbar-nav">
+        <li><a href="/login" style="color: #d9534f"><button class="btn btn-default">Login</button></a></li>
+        <li><a href="/favorites" style="color:red"><button class="btn btn-default">Favorites</button></a></li>
+      </ul>
 
-            <div class="form-group">
-              <select name="cat" class="form-control" id="cat">
-                <option value="movie">Movie Title</option>
-                <option value="person">Actor</option>
-              </select>
-            </div>
-              
-              <input type="text" id="movie" placeholder="Search" name="movieSearch" />
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+            <form action="/search?source=hp" method="post" id="search-form" class="form-inline">
+
+              <div class="form-group">
+                <select name="cat" class="form-control" id="cat">
+                  <option value="movie">Movie Title</option>
+                  <option value="person">Actor</option>
+                </select>
+              </div>
+                
+                <input type="text" id="movie" placeholder="Search" name="movieSearch" />
 
 
-            <input type="submit" class="btn btn-primary" />
-          </form>
-      </li>      
-    </ul>
+              <button type="submit" class="btn btn-danger navbar-btn">Search</button>
+            </form>
+        </li>      
+      </ul>
+
+    </div>
   </div>
 </nav>

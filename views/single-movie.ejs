@@ -4,31 +4,55 @@
 	<% include navbar %>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<h1 class="single-movie-title">
 
+			<div class="col-sm-6  text-center">
+				<h1 class="single-movie-title text-danger">
+					<%= parsedData.title%>
 				</h1>
-				
-				<h3 class="single-movie-title">
 
-				</h3>
-				
+				<a href="<%= parsedData.homepage %>" target="_blank">
 
-				<img src="" />
-				
-				<p class="overview-header">Movie Synopsis: <span class="single-movie-overview">
+					<% if( parsedData.poster_path == null){ %>
+
+							<img src="/images/not-available.jpg" style="min-height: 400px; max-height: 400px;">
 					
-				</span></p>
+					<%}else{ %>
+
+							<img src="<%= imageBaseUrl + parsedData.poster_path %>" style="min-height: 400px; max-height: 400px;">
+					<% } %>
+
+					<!-- <img src=" imageBaseUrl + parsedData.poster_path %>" /> -->
+				</a>
+				
 			</div>
+
+			<div class="col-sm-6 col-sm">
+				<h3 class="single-movie-title text-info mt-2">
+					<%= parsedData.tagline%>
+				</h3>
+				<hr style="border: 1px solid #07565f">
+
+				<p class="overview-header">Movie Synopsis: <span class="single-movie-overview">
+					<%= parsedData.overview %>
+				</span></p>
+
+				<hr style="border: 1px solid #07565f">
+				<!-- Button trigger modal -->
+
+				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+					More Details
+				</button>
+				<a href="<%= parsedData.homepage %>" target="_blank"><button type="button" class="btn btn-danger btn-lg">
+					Visit Movie Home Page
+				</button></a>
+
+			</div>
+
+
 		</div>
 	</div>
 
-<!-- Button trigger modal -->
-<div class="col-sm-12 text-center">
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-		More Details
-	</button>
-</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,10 +60,59 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Movie Information</h4>
+        <h4 class="modal-title text-danger" id="myModalLabel">Movie Information</h4>
       </div>
       <div class="modal-body">
+      	<div class="container-fluid">
+      		<div class="row">
+	      		<div class="col-sm-4">
+	      			<p>Genres:
+			      		<ul>
+			      			<% parsedData.genres.forEach((genre)=>{ %>
 
+			      				<li><%= genre.name %></li>
+			      			<% })%>
+			      			
+			      		</ul>
+			      	</p>
+
+			      	<p><a href="https://www.imdb.com/title/<%=parsedData.imdb_id%>" target="_blank"> IMDB Link </a></p>
+	      		</div>
+
+
+	      		<div class="col-sm-4">
+	      			<p>Release Date: <%= parsedData.release_date %></p>
+	      			<p class="text-danger">TMDB User Score: <%= parsedData.vote_average %></p>
+	      			<p>Budget: $<%= parsedData.budget %></p>
+	      			<p>Revenue: $<%= parsedData.revenue %></p>
+	      			<p>Runtime: <%= parsedData.runtime %> Mins</p>
+	      		</div>
+
+	      		<div class="col-sm-4">
+	      			<p>Production Companies:
+			      		<ul>
+			      			<% parsedData.production_companies.forEach((company)=>{ %>
+
+			      				<li><%= company.name %></li>
+			      			<% })%>
+			      			
+			      		</ul>
+			      	</p>
+
+			      	<p>Production Countries:
+			      		<ul>
+			      			<% parsedData.production_countries.forEach((country)=>{ %>
+
+			      				<li><%= country.name %></li>
+			      			<% })%>
+			      			
+			      		</ul>
+			      	</p>
+	      		</div>
+      		</div>
+      	</div>
+      	
+      	
 
       </div>
       <div class="modal-footer">
